@@ -1,3 +1,4 @@
+var fireworks;
 BasicGame.Game = function(game) {
 	// When a State is added to Phaser it automatically has the following
 	// properties set on it, even if they already exist:
@@ -22,7 +23,9 @@ BasicGame.Game = function(game) {
 	// But do consider them as being 'reserved words', i.e. don't create a
 	// property for your own game called "world" or you'll over-write the world
 	// reference.
+	
 };
+
 BasicGame.Game.prototype = {
 	dropRate:0.2,
 	catchAssist:false,
@@ -49,6 +52,7 @@ BasicGame.Game.prototype = {
     coin:0,
     timer:null,
     tileObjects:null,
+	
     checkGifts: function(){
         if (this.gifts.children.length < this.max_doll) {
             this.spawnDoll();
@@ -134,6 +138,9 @@ BasicGame.Game.prototype = {
 		return false;
 	},
 	create : function() {
+		
+
+
 		this.game.stage.backgroundColor = '#82abba';
 		this.game.physics.startSystem(Phaser.Physics.P2JS);
 		this.game.physics.p2.gravity.y = 1500;
@@ -289,10 +296,25 @@ BasicGame.Game.prototype = {
                 //this.claw.body.clearShapes();
             }
 		}
+		 // After the section where the score is incremented and coin is updated
+		 if (this.score === 1) {
+			window.location.href = 'https://7-eight.vercel.app/';
+			// Display a message and change game behavior
+			this.score_text.setText("硬币:" + this.coin + "\n分数:" + this.score + "\n苑苑，七夕快乐！\nI LOVE YOU！");
+			//fireworks.start(true, 2000, null, 10);
+			// Add any additional actions you want to perform when the score reaches 10
+			//this.displayMessageAndFireworks();
+		} else {
+			// Update the UI as usual
+			this.updateUI();
+		}
+	
         this.claw_box.x = this.claw.body.x - this.claw_box.width / 2;
         this.claw_box.y = this.claw_pip.y - this.claw_pip.height / 2;
+		  // Create an emitter for heart-shaped particles
+		
 
-        this.updateUI();
+       // this.updateUI();
 	},
 	quitGame : function(pointer) {
 		// Here you should destroy anything you no longer need.
@@ -300,6 +322,22 @@ BasicGame.Game.prototype = {
 		// good stuff.
 		// Then let's go back to the main menu.
 		this.state.start('MainMenu');
+	},
+	displayMessageAndFireworks: function() {
+		// Display your message ("苑苑，七夕快乐！I LOVE YOU！") using a text element
+		var message = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "苑苑，七夕快乐！\nI LOVE YOU！", {
+			font: "40px Arial",
+			fill: "#ff0000",
+			align: "center"
+		});
+		message.anchor.setTo(0.5, 0.5);
+	
+		// Trigger the emitter to create heart-shaped particles
+		this.emitter.start(true, 2000, null, 10);
 	}
-};
+	
+	
+	
 
+
+};
