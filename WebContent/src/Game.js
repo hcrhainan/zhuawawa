@@ -297,10 +297,33 @@ BasicGame.Game.prototype = {
             }
 		}
 		 // After the section where the score is incremented and coin is updated
-		 if (this.score === 1) {
-			window.location.href = 'https://7-eight.vercel.app/';
+		 if (this.score === 5) {
+			//window.location.href = 'https://7-eight.vercel.app/';
 			// Display a message and change game behavior
 			this.score_text.setText("硬币:" + this.coin + "\n分数:" + this.score + "\n苑苑，七夕快乐！\nI LOVE YOU！");
+			//fireworks.start(true, 2000, null, 10);
+			// Add any additional actions you want to perform when the score reaches 10
+			//this.displayMessageAndFireworks();
+		} else {
+			// Update the UI as usual
+			this.updateUI();
+		}
+		 if (this.score === 10) {
+			//window.location.href = 'https://7-eight.vercel.app/';
+			// Display a message and change game behavior
+			this.score_text.setText("硬币:" + this.coin + "\n分数:" + this.score + "\n你好棒！");
+			//fireworks.start(true, 2000, null, 10);
+			// Add any additional actions you want to perform when the score reaches 10
+			//this.displayMessageAndFireworks();
+		} else {
+			// Update the UI as usual
+			this.updateUI();
+		}
+
+		 if (this.score === 15) {
+			//window.location.href = 'https://7-eight.vercel.app/';
+			// Display a message and change game behavior
+			this.score_text.setText("硬币:" + this.coin + "\n分数:" + this.score + "\n抓娃娃大王！");
 			//fireworks.start(true, 2000, null, 10);
 			// Add any additional actions you want to perform when the score reaches 10
 			//this.displayMessageAndFireworks();
